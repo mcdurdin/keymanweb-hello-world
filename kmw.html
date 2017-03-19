@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Khmerism Keyboard</title>
+		<meta name="description" content="Virtual Keyboard">
+    
+    <!-- following is important for KMW: at present, KMW requires this for mobile -->
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    
+		<meta property="og:title" content="Type Khmer">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content=" ">
+		<meta property="og:image" content=" ">
+		<meta property="og:site_name" content="Type Khmer">
+		<meta property="og:description" content="Virtual Keyboard - Type Khmer online">
+		<meta property="og:locale" content="en_US">
+    
+    <!-- this is optional but eliminates a flash of unstyled content -->
+		<link href='https://s.keyman.com/kmw/engine/408/src/osk/kmwosk.css' rel='stylesheet' type='text/css'>
+		
+		<style>
+      /* Styles for the page */
+      
+      * {
+        font-family: Tahoma, sans-serif;
+      }
+      
+      body.is-desktop {
+        padding: 22px 2px 0 2px;
+        width: 900px;
+        margin: auto;
+      }
+      
+      h1 { 
+        font-size: 24pt;
+        font-weight: bold;
+        margin: 0 0 24px 0;
+        padding: 0;
+      }
+      
+      body.is-desktop h1 {
+        font-size: 48pt;
+      }      
+      
+      /* Style the text area */
+      
+      textarea { 
+        width: 100%; 
+        height: 250px; 
+        font-family: "Khmer OS";
+        font-size: 24px;
+      }
+      
+      /* Style the on screen keyboard */
+
+      body .desktop .kmw-osk-inner-frame {
+        background: white;
+        border: solid 1px #404040;
+        padding-bottom: 2px;
+        padding-top: 8px;
+      }
+      
+      body .desktop .kmw-title-bar,
+      body .desktop .kmw-footer {
+        display: none;
+      }
+
+      body .desktop .kmw-key-square {
+        border-radius: 2px;
+        padding-bottom: 8px;
+      }
+            
+      body .desktop .kmw-key {
+        border-radius: 2px;
+        border: solid 1px #404040;
+        background: #f2f4f6;
+      }
+
+      body .desktop .kmw-key:hover {
+        background: #c0c8cf;
+      }
+    </style>
+		
+    <!-- Uncomment these lines if you want the source version of KeymanWeb (and remove the keymanweb.js reference) -->
+    <script src="https://s.keyman.com/kmw/engine/408/src/kmwstring.js"></script>
+    <script src="https://s.keyman.com/kmw/engine/408/src/kmwbase.js"></script>
+    <script src="https://s.keyman.com/kmw/engine/408/src/keymanweb.js"></script>
+    <script src="https://s.keyman.com/kmw/engine/408/src/kmwosk.js"></script>
+    <script src="https://s.keyman.com/kmw/engine/408/src/kmwnative.js"></script>
+    <script src="https://s.keyman.com/kmw/engine/408/src/kmwcallback.js"></script>
+    <script src="https://s.keyman.com/kmw/engine/408/src/kmwkeymaps.js"></script>
+    <script src="https://s.keyman.com/kmw/engine/408/src/kmwlayout.js"></script>
+    <script src="https://s.keyman.com/kmw/engine/408/src/kmwinit.js"></script>
+    
+    
+    <!--<script src="https://s.keyman.com/kmw/engine/408/keymanweb.js"></script>-->
+
+    <!-- Uncomment if you want the user to be able to switch keyboards with a toggle popup ... 
+         or you can create a custom switch if you prefer 
+    <script src='https://s.keyman.com/kmw/engine/408/kmwuitoggle.js'></script>
+    -->
+
+    <script>
+      // This should really be in a separate file. 
+      // But for now in one file is easier to understand
+       
+      // After everything has loaded
+      window.addEventListener('load', function() {
+      
+        if(!tavultesoft.keymanweb.util.isTouchDevice()) {
+          document.body.className += ' is-desktop';
+        }
+
+        tavultesoft.keymanweb.init();
+        
+        //tavultesoft.keymanweb.addKeyboards('@eng'); // Loads default English keyboard from Keyman Cloud (CDN) if you want it
+
+        // Add our custom keyboard
+        
+        tavultesoft.keymanweb.addKeyboards({
+          name: 'Khmerism',       // Display name of the keyboard
+          id: 'lyhengkeyboard',   // ID of the keyboard for reference in code
+          filename: './lyhengkeyboard-1.0.js',  // source of the keyboard for dynamic load
+          version: '1.0',         // version of the keyboard, optional
+          language: [{
+            name: 'Khmer',        // language name for UI elements
+            id: 'khm',            // language ID for tagging text
+            region: 'as'          // region of the language, for UI elements, optional
+          }]
+        });
+
+        var ta = document.getElementsByTagName('textarea')[0];
+        
+        // Watch for the keyboard being shown and set its position
+        
+        tavultesoft.keymanweb.osk.addEventListener('show', function() {
+/*          var x = ta.offsetLeft, 
+              y = ta.offsetTop + ta.offsetHeight + 8, // a small gap below the text area
+              w = ta.offsetWidth, 
+              h = w * 0.4; // a pleasing aspect ratio
+          tavultesoft.keymanweb.osk.setRect({left: x, top: y, width: w, height: h, nomove: true, nosize: true});*/
+
+          var rectParams = {
+            left: ta.offsetLeft, 
+            top: ta.offsetTop + ta.offsetHeight + 8, // a small gap below the text area
+            width: ta.offsetWidth, 
+            height: ta.offsetWidth * 0.4, // a pleasing aspect ratio
+            nomove: true,
+            nosize: true
+          };
+          tavultesoft.keymanweb.osk.setRect(rectParams);
+          
+        });
+      
+        // Focus text area after everything loads
+        
+        ta.focus(); 
+      }, false);
+    </script>
+	</head>
+  
+  <!-- The osk-always-visible class tells KeymanWeb not to hide the osk on blur, after it is
+       shown the first time -->
+	<body class="osk-always-visible">
+    <h1>Typing Khmer</h1>
+    <textarea rows="6" cols="60"></textarea>	
+	</body>
+</html>
